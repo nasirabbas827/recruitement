@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 25, 2024 at 11:27 AM
+-- Generation Time: Jul 13, 2024 at 09:37 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -217,16 +217,24 @@ CREATE TABLE `users` (
   `email` varchar(100) NOT NULL,
   `phone` varchar(20) NOT NULL,
   `age` int(11) DEFAULT NULL,
-  `usertype` varchar(20) DEFAULT NULL
+  `usertype` varchar(20) DEFAULT NULL,
+  `name` varchar(50) DEFAULT NULL,
+  `cnic` varchar(50) DEFAULT NULL,
+  `address` varchar(100) DEFAULT NULL,
+  `town` varchar(100) DEFAULT NULL,
+  `region` varchar(100) DEFAULT NULL,
+  `postcode` varchar(100) DEFAULT NULL,
+  `country` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `email`, `phone`, `age`, `usertype`) VALUES
-(3, 'candidate1', '$2y$10$NRLdS6iLQYbbWuk4Z6fCFuPoWwXBs0c4cnK6GseHZ3XDGnMrewP7S', 'candidate@gmail.com', '31765268278', 23, 'candidate'),
-(4, 'rec1', '$2y$10$47uLeD0llPLv1sKKWqxwbeBicqeSWJS7DpwqsaMve0UoaarFYWZvC', 'rec@gmail.com', '317652682782', 23, 'recruiter');
+INSERT INTO `users` (`id`, `username`, `password`, `email`, `phone`, `age`, `usertype`, `name`, `cnic`, `address`, `town`, `region`, `postcode`, `country`) VALUES
+(3, 'candidate1', '$2y$10$NRLdS6iLQYbbWuk4Z6fCFuPoWwXBs0c4cnK6GseHZ3XDGnMrewP7S', 'candidate@gmail.com', '31765268278', 23, 'candidate', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 'rec1', '$2y$10$47uLeD0llPLv1sKKWqxwbeBicqeSWJS7DpwqsaMve0UoaarFYWZvC', 'rec@gmail.com', '317652682782', 23, 'recruiter', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(5, 'can1', '$2y$10$JZV7XRjiVGEdCCO8huvIPuvVti3.beStwORYasJyFP/KpFmWSmztu', 'can@gmail.com', '03176526827', 23, 'candidate', 'Candiadte', '21343124323', 'Tehsil Jampur District Rajanpur', 'Jampur', 'BA', '33000', 'Pakistan');
 
 --
 -- Indexes for dumped tables
@@ -336,7 +344,7 @@ ALTER TABLE `notifications`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
