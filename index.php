@@ -76,13 +76,14 @@ $feedback = mysqli_query($conn, $sql2);
         .jumbotron p {
             font-size: 1.5rem;
         }
-    </style>
+</style>
 </head>
 <body>
 
 <?php
 include('navbar.php');
 ?>
+
 
 <div class="jumbotron text-center">
     <h1>Welcome to E-Recruitment System</h1>
@@ -127,10 +128,9 @@ include('navbar.php');
                 </div>
             <?php endwhile; ?>
         </div>
-    </div>
+</div>
 
-
-    <div class="container mt-5">
+<div class="container mt-5">
     <h2>Website Feedback</h2>
     <div class="row">
         <?php while ($row = mysqli_fetch_assoc($feedback)) : ?>
@@ -146,6 +146,85 @@ include('navbar.php');
         <?php endwhile; ?>
     </div>
 </div>
+
+<div class="container mt-5">
+    <section id="about">
+        <h2>About Us</h2>
+        <p>
+            Welcome to the E-Recruitment System, your trusted partner in job hunting and recruitment. Our platform connects talented job seekers with top employers across various industries. With a mission to streamline the hiring process, we offer a comprehensive suite of tools and resources to make job searching and hiring easier and more efficient.
+        </p>
+        <p>
+            Founded in 2024, our goal has always been to bridge the gap between employers and job seekers, fostering a community where talent meets opportunity. We believe in the power of technology to transform the recruitment landscape, making it more accessible, transparent, and user-friendly.
+        </p>
+        <p>
+            Our team of experts is dedicated to providing the best possible experience for our users, continuously innovating and improving our platform to meet the evolving needs of the job market. Thank you for choosing the E-Recruitment System as your go-to resource for career advancement and talent acquisition.
+        </p>
+    </section>
+</div>
+
+<div class="container mt-5">
+    <section id="services">
+        <h2>Our Services</h2>
+        <p>
+            At the E-Recruitment System, we offer a wide range of services designed to support both job seekers and employers. Here are some of the key services we provide:
+        </p>
+        <h3>For Job Seekers:</h3>
+        <ul>
+            <li><strong>Job Search:</strong> Explore thousands of job listings across various industries and locations.</li>
+            <li><strong>Resume Building:</strong> Create a professional resume using our easy-to-use resume builder tool.</li>
+            <li><strong>Job Alerts:</strong> Get notified about new job opportunities that match your skills and preferences.</li>
+            <li><strong>Application Tracking:</strong> Manage your job applications and track their status in real-time.</li>
+            <li><strong>Career Advice:</strong> Access expert advice on job searching, interviewing, and career development.</li>
+        </ul>
+        <h3>For Employers:</h3>
+        <ul>
+            <li><strong>Job Posting:</strong> Post job openings and reach a vast pool of qualified candidates.</li>
+            <li><strong>Candidate Screening:</strong> Use our advanced filtering tools to find the best candidates for your roles.</li>
+            <li><strong>Employer Branding:</strong> Enhance your company's profile and attract top talent with a compelling employer brand.</li>
+            <li><strong>Recruitment Analytics:</strong> Gain insights into your recruitment process with detailed analytics and reports.</li>
+            <li><strong>Consulting Services:</strong> Get personalized support and advice from our team of recruitment experts.</li>
+        </ul>
+        <p>
+            Our commitment is to provide exceptional service and support to help you achieve your recruitment and career goals. Whether you are looking for your next job opportunity or searching for the perfect candidate, the E-Recruitment System is here to assist you every step of the way.
+        </p>
+    </section>
+</div>
+
+
+<div class="container mt-5">
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>If you have any questions, please contact us at:</p>
+        <ul>
+            <li>Email: contact@erecruitmentsystem.com</li>
+            <li>Phone: +123 456 7890</li>
+            <li>Address: 123 Main Street, City, Country</li>
+        </ul>
+        
+        <h3>Send Us a Message</h3>
+        <form action="contact_form.php" method="post">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="subject">Subject:</label>
+                <input type="text" class="form-control" id="subject" name="subject" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message:</label>
+                <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </section>
+</div>
+
+
 <footer class="mt-5 py-3 bg-light">
     <div class="container text-center">
         <p>&copy; 2024 E-Recruitment System. All rights reserved.</p>
