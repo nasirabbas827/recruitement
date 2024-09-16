@@ -36,14 +36,14 @@ while ($row = mysqli_fetch_assoc($result_keywords)) {
 }
 
 // Handle search query
-if ($_SERVER["REQUEST_METHOD"] == "GET") {
-    if (isset($_GET['search'])) {
-        $search = $_GET['search'];
-        $sql_search = "SELECT J.*, R.company_name FROM Jobs J INNER JOIN Recruiters R ON J.recruiter_id = R.recruiter_id WHERE J.status = 'active' AND (J.job_title LIKE '%$search%' OR J.location LIKE '%$search%' OR J.industry LIKE '%$search%' OR J.keywords LIKE '%$search%')";
-        $result = mysqli_query($conn, $sql_search);
-    }
+if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['search'])) {
+    $search = $_GET['search'];
+    $sql_search = "SELECT J.*, R.company_name FROM Jobs J INNER JOIN Recruiters R ON J.recruiter_id = R.recruiter_id WHERE J.status = 'active' AND (J.job_title LIKE '%$search%' OR J.location LIKE '%$search%' OR J.industry LIKE '%$search%' OR J.keywords LIKE '%$search%')";
+    $result = mysqli_query($conn, $sql_search);
+    $searchActive = true;
+} else {
+    $searchActive = false;
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -70,18 +70,20 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
                 </div>
             </div>
         </form>
+
         <div class="list-group">
-            <?php while ($row = mysqli_fetch_assoc($result)) : ?>
-                <div class="list-group-item">
-                    <h5 class="mb-1"><?php echo $row['job_title']; ?></h5>
-                    <p class="mb-1">Description: <?php echo $row['job_description']; ?></p>
-                    <p class="mb-1">Requirements: <?php echo $row['job_requirements']; ?></p>
-                    <p class="mb-1">Location: <?php echo $row['location']; ?></p>
-                    <p class="mb-1">Industry: <?php echo $row['industry']; ?></p>
-                    <p class="mb-1">Keywords: <?php echo $row['keywords']; ?></p>
-                    <p class="mb-1">Company: <?php echo $row['company_name']; ?></p>
-                    <a href="apply_job.php?id=<?php echo $row['job_id']; ?>" class="btn btn-primary mt-2">Apply</a>
-                    <div class="mt-2">
+            <?php if (mysqli_num_rows($result) > 0) : ?>
+                <?php while ($row = mysqli_fetch_assoc($result)) : ?>
+                    <div class="list-group-item">
+                        <h5 class="mb-1"><?php echo $row['job_title']; ?></h5>
+                        <p class="mb-1">Description: <?php echo $row['job_description']; ?></p>
+                        <p class="mb-1">Requirements: <?php echo $row['job_requirements']; ?></p>
+                        <p class="mb-1">Location: <?php echo $row['location']; ?></p>
+                        <p class="mb-1">Industry: <?php echo $row['industry']; ?></p>
+                        <p class="mb-1">Keywords: <?php echo $row['keywords']; ?></p>
+                        <p class="mb-1">Company: <?php echo $row['company_name']; ?></p>
+                        <a href="apply_job.php?id=<?php echo $row['job_id']; ?>" class="btn btn-primary mt-2">Apply</a>
+                        <div class="mt-2">
                             <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode("http://yourwebsite.com/apply_job.php?id=" . $row['job_id']); ?>" target="_blank" class="text-decoration-none">
                                 <i class="fab fa-facebook-square fa-2x"></i>
                             </a>
@@ -92,8 +94,17 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
                                 <i class="fab fa-linkedin fa-2x"></i>
                             </a>
                         </div>
+                    </div>
+                <?php endwhile; ?>
+            <?php else : ?>
+                <div class="alert alert-info" role="alert">
+                    <?php if ($searchActive) : ?>
+                        No jobs found matching your search criteria.
+                    <?php else : ?>
+                        No active jobs available at the moment.
+                    <?php endif; ?>
                 </div>
-            <?php endwhile; ?>
+            <?php endif; ?>
         </div>
     </div>
 

@@ -12,6 +12,9 @@
         <a class="nav-link" href="view_users.php">Users</a>
       </li>
       <li class="nav-item ">
+        <a class="nav-link" href="admin_jobs.php">Jobs</a>
+      </li>
+      <li class="nav-item ">
         <a class="nav-link" href="admin_feedback.php">Feedbacks</a>
       </li>   
       <li class="nav-item">
